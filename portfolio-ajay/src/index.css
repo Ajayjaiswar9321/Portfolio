@@ -121,11 +121,16 @@ img {
 /* ========== RESPONSIVE ========== */
 @media (max-width: 768px) {
   .section {
-    padding: 60px 0;
+    padding: 40px 0;
   }
-  
+
   .section-title {
     font-size: 1.75rem;
+    margin-bottom: 35px;
+  }
+
+  .container {
+    padding: 0 15px;
   }
 }
 

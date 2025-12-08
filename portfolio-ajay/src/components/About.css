@@ -1,6 +1,6 @@
 .about-content {
   display: grid;
-  gap: 60px;
+  gap: 40px;
 }
 
 .about-text {
@@ -71,7 +71,27 @@
 }
 
 @media (max-width: 768px) {
+  .about-content {
+    gap: 25px;
+  }
+
+  .about-text p {
+    font-size: 1rem;
+    margin-bottom: 15px;
+  }
+
   .about-highlights {
     grid-template-columns: 1fr;
+    gap: 15px;
+    margin-top: 20px;
+  }
+
+  .highlight-card {
+    padding: 25px 20px;
+  }
+
+  .highlight-icon {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
   }
 }

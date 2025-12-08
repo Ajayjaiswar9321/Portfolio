@@ -2,7 +2,7 @@
   position: relative;
   max-width: 1000px;
   margin: 0 auto;
-  padding: 40px 0;
+  padding: 20px 0;
 }
 
 .timeline-line {
@@ -40,7 +40,7 @@
 
 .timeline-item {
   position: relative;
-  margin-bottom: 60px;
+  margin-bottom: 40px;
   width: calc(50% - 40px);
 }
 
@@ -161,6 +161,7 @@
     width: calc(100% - 40px);
     left: 40px !important;
     text-align: left;
+    margin-bottom: 25px;
   }
 
   .timeline-item .timeline-dot {

@@ -212,29 +212,50 @@
 @media (max-width: 768px) {
   .contact-content {
     grid-template-columns: 1fr;
-    gap: 40px;
+    gap: 25px;
+  }
+
+  .contact-form {
+    gap: 15px;
   }
 
   .contact-form input,
   .contact-form textarea {
-    padding: 14px 16px;
-    font-size: 0.95rem;
+    padding: 12px 14px;
+    font-size: 0.9rem;
+  }
+
+  .contact-form textarea {
+    min-height: 100px;
   }
 
   .submit-btn {
-    padding: 14px 28px;
-    font-size: 0.95rem;
+    padding: 12px 24px;
+    font-size: 0.9rem;
   }
 
-  .info-item {
-    padding: 16px;
+  .contact-info {
     gap: 15px;
   }
 
+  .info-item {
+    padding: 14px;
+    gap: 12px;
+  }
+
   .info-icon {
-    font-size: 1.5rem;
-    min-width: 40px;
-    height: 40px;
+    font-size: 1.3rem;
+    min-width: 36px;
+    height: 36px;
+  }
+
+  .info-item h4 {
+    font-size: 0.9rem;
+  }
+
+  .info-item p,
+  .info-item a {
+    font-size: 0.85rem;
   }
 
   .success-toast {

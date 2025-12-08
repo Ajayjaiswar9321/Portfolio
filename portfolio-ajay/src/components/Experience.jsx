@@ -6,7 +6,7 @@ const Experience = () => {
       title: 'QA Analyst',
       company: 'AI NEXT STUDIO',
       location: 'Mumbai, India',
-      duration: 'Jan 2023 - Present',
+      duration: '2025 - Present',
       points: [
         'Conducted comprehensive manual and automated testing across web applications',
         'Developed detailed test cases and documentation for multiple projects',
@@ -15,10 +15,10 @@ const Experience = () => {
       ]
     },
     {
-      title: 'Software Developer & Tester',
+      title: 'Software Developer',
       company: 'Bahar Infocons Pvt Ltd',
       location: 'Mumbai, India',
-      duration: 'Jun 2021 - Dec 2022',
+      duration: '2024 - 2025',
       points: [
         'Built responsive frontend interfaces using HTML, CSS, and JavaScript',
         'Performed end-to-end testing and quality assurance',
