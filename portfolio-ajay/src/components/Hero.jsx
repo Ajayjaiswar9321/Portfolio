@@ -22,7 +22,7 @@ const Hero = () => {
           <p className="hero-description">
             I combine quality assurance and development to build reliable, user-focused digital experiences.
           </p>
-          
+
           <div className="hero-buttons">
             <button className="btn-primary" onClick={scrollToProjects}>
               View My Projects
