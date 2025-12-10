@@ -1,6 +1,10 @@
+import { useEffect, useRef, useState } from 'react'
 import './Hero.css'
 
 const Hero = () => {
+  const cardRef = useRef(null)
+  const containerRef = useRef(null)
+  const [animationActive, setAnimationActive] = useState(false)
 
   const scrollToProjects = () => {
     document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })
@@ -9,6 +13,54 @@ const Hero = () => {
   const scrollToContact = () => {
     document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })
   }
+
+  // Toggle animation on mobile tap
+  const handleCardTap = () => {
+    if (window.innerWidth <= 768) {
+      setAnimationActive(!animationActive)
+    }
+  }
+
+  // 3D tilt effect following mouse cursor
+  useEffect(() => {
+    const card = cardRef.current
+    const container = containerRef.current
+    if (!card || !container) return
+
+    const handleMouseMove = (e) => {
+      const rect = card.getBoundingClientRect()
+      const x = e.clientX - rect.left
+      const y = e.clientY - rect.top
+      const centerX = rect.width / 2
+      const centerY = rect.height / 2
+
+      const rotateX = (y - centerY) / 12
+      const rotateY = (centerX - x) / 12
+
+      card.style.transform = `rotateX(${-rotateX}deg) rotateY(${rotateY}deg) translateZ(50px)`
+
+      // Parallax for background particles
+      const particles = container.querySelectorAll('.cyber-particle')
+      particles.forEach((particle, i) => {
+        const speed = (i + 1) * 0.03
+        const baseX = parseFloat(particle.dataset.x) || 0
+        const baseY = parseFloat(particle.dataset.y) || 0
+        particle.style.transform = `translate(${baseX + (x - centerX) * speed}px, ${baseY + (y - centerY) * speed}px)`
+      })
+    }
+
+    const handleMouseLeave = () => {
+      card.style.transform = 'rotateX(0) rotateY(0) translateZ(0)'
+    }
+
+    card.addEventListener('mousemove', handleMouseMove)
+    card.addEventListener('mouseleave', handleMouseLeave)
+
+    return () => {
+      card.removeEventListener('mousemove', handleMouseMove)
+      card.removeEventListener('mouseleave', handleMouseLeave)
+    }
+  }, [])
 
   return (
     <section id="hero" className="hero section">
@@ -51,14 +103,69 @@ const Hero = () => {
           </div>
         </div>
 
-        <div className="hero-image">
-          <div className="profile-image-container">
-            <img
-              src="/assets/images/profile.jpg"
-              alt="Ajay Jaiswar"
-              className="profile-image"
-            />
-            <div className="profile-glow"></div>
+        <div className="cyber-card-wrapper" ref={containerRef}>
+          {/* 3D Layered Frames */}
+          <div
+            className={`cyber-card ${animationActive ? 'animation-active' : ''}`}
+            ref={cardRef}
+            onClick={handleCardTap}
+          >
+            <div className="card-frame frame-1"></div>
+            <div className="card-frame frame-2"></div>
+            <div className="card-frame frame-3"></div>
+
+            {/* Rotating border glow */}
+            <div className="rotating-border-glow"></div>
+
+            {/* Corner accents (L-shaped) */}
+            <div className="cyber-corner corner-tl"></div>
+            <div className="cyber-corner corner-tr"></div>
+            <div className="cyber-corner corner-bl"></div>
+            <div className="cyber-corner corner-br"></div>
+
+            {/* Main card content */}
+            <div className="card-content">
+              {/* Profile image */}
+              <img
+                src="/assets/images/profile.jpg"
+                alt="Ajay Jaiswar"
+                className="cyber-profile-image"
+              />
+
+              {/* Holographic shine */}
+              <div className="holo-shine"></div>
+
+              {/* Scanlines overlay */}
+              <div className="scanlines-overlay"></div>
+
+              {/* Scan beam */}
+              <div className="scan-beam"></div>
+
+              {/* HUD corner brackets */}
+              <div className="hud-bracket hud-tl"></div>
+              <div className="hud-bracket hud-tr"></div>
+              <div className="hud-bracket hud-bl"></div>
+              <div className="hud-bracket hud-br"></div>
+
+              {/* Floating neon orbs */}
+              <div className="neon-orbs">
+                <span></span><span></span><span></span><span></span>
+              </div>
+
+              {/* Cyan tint overlay */}
+              <div className="cyan-overlay"></div>
+
+              {/* Bottom gradient for text */}
+              <div className="bottom-gradient"></div>
+
+              {/* Info panel - Only name */}
+              <div className="info-panel">
+                <h3 className="cyber-name">AJAY JAISWAR</h3>
+              </div>
+            </div>
+
+            {/* Card glow */}
+            <div className="cyber-glow"></div>
           </div>
         </div>
       </div>

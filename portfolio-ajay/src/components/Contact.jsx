@@ -54,8 +54,13 @@ const Contact = () => {
 
     setIsSubmitting(true)
 
+    // API URL - localhost for dev, deployed URL for production
+    const API_URL = import.meta.env.DEV
+      ? 'http://localhost:5000'
+      : (import.meta.env.VITE_API_URL || 'https://portfolio-backend-ajay.vercel.app')
+
     try {
-      const response = await fetch('http://localhost:5001/api/contact', {
+      const response = await fetch(`${API_URL}/api/contact`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -63,13 +68,18 @@ const Contact = () => {
         body: JSON.stringify(formData)
       })
 
-      if (response.ok) {
+      const data = await response.json()
+
+      if (response.ok && data.success) {
         setShowSuccess(true)
         setFormData({ name: '', email: '', subject: '', message: '' })
         setTimeout(() => setShowSuccess(false), 5000)
+      } else {
+        setErrors({ submit: data.error || 'Failed to send message' })
       }
     } catch (error) {
       console.error('Error sending message:', error)
+      setErrors({ submit: 'Failed to send message. Please try again.' })
     } finally {
       setIsSubmitting(false)
     }
